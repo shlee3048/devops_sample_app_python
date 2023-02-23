@@ -18,7 +18,7 @@ pipeline {
         }
         steps {
           env.WORKSPACE = pwd()
-          dir("${env.WORKSPACE}") { 
+          dir("${WORKSPACE}") { 
                 sh 'docker build -t test:1 .'
             }
         }
