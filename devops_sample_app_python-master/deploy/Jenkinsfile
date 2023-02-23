@@ -17,9 +17,9 @@ pipeline {
             expression { return params.BUILD_DOCKER_IMAGE }
         }
         steps {
-          dir("${env.WORKSPACE}") { 
-              sh 'docker build -t test:1 .'
-          }
+            dir("${env.WORKSPACE}") { 
+                sh 'docker build -t test:1 .'
+            }
         }
         post {
             always {
