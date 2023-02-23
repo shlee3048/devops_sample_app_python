@@ -17,7 +17,8 @@ pipeline {
             expression { return params.BUILD_DOCKER_IMAGE }
         }
         steps {
-          dir("/devops_06_03_jenkins/src/jenkins_remote_docker") { 
+          env.WORKSPACE = pwd()
+          dir("${env.WORKSPACE}") { 
                 sh 'docker build -t test:1 .'
             }
         }
