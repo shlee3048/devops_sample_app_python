@@ -1,24 +1,29 @@
 pipeline {
   agent any
+  
   parameters {
     booleanParam(name : 'BUILD_DOCKER_IMAGE', defaultValue : true, description : 'BUILD_DOCKER_IMAGE')
     booleanParam(name : 'RUN_TEST', defaultValue : true, description : 'RUN_TEST')
     booleanParam(name : 'PUSH_DOCKER_IMAGE', defaultValue : true, description : 'PUSH_DOCKER_IMAGE')
   }
+  
   environment {
     REGION = "ap-northeast-2"
   }
+  
   stages {
     stage('============ Build Docker Image ============') {
         when {
             expression { return params.BUILD_DOCKER_IMAGE }
         }
         steps {
-            echo "Stage Build!"
+          dir("${env.WORKSPACE}") { 
+              sh 'docker build -t test:1 .'
+          }
         }
         post {
             always {
-                echo "post stage"
+                echo "Docker build success!"
             }
         }
     }
