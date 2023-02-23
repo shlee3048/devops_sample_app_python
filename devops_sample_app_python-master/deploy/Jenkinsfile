@@ -17,7 +17,6 @@ pipeline {
             expression { return params.BUILD_DOCKER_IMAGE }
         }
         steps {
-          env.WORKSPACE = pwd()
           dir("${WORKSPACE}") { 
                 sh 'docker build -t test:1 .'
             }
